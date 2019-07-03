@@ -1,3 +1,4 @@
-print('''aaa
-sss
-ddd''')
+
+s4=r'''\\hello,
+list'''
+print(s4)
