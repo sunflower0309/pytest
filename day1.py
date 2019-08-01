@@ -1,3 +1,5 @@
+
+
 def hano(n,A,B,C):
     if n==1:
         print(n,A,'->',C)

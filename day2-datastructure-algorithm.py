@@ -112,6 +112,7 @@ class SingleLinkList(object):
 
     def searchindex(self,item):
         cur=self.__head
+
         count=0
         if cur==None:
             print("This chain table is empty")
@@ -132,6 +133,8 @@ class SingleLinkList(object):
         if cur!=None:
             while cur.next!=None:
                 cur=cur.next
+            print("inlast")
+            print(cur.get_elem())
 
             return cur
         else:
@@ -139,6 +142,7 @@ class SingleLinkList(object):
 
     def insertnew(self,item,pos):
         node=Node(item)
+
         cur=self.__head
         if cur==None:
             self.__head=node
@@ -155,16 +159,39 @@ class SingleLinkList(object):
             node.next=cur.next
             cur.next=node
 
-head=Node(152)
-print(head.get_elem())
-sll=SingleLinkList(head)
-head2=Node(154)
-sll.add(123)
-sll.add(34)
-sll.add(263)
-sll.add(1232)
-print(sll.length())
-sll.travel()
-print(sll.last().elem)
-print()
-x="str"
+class MinStack(object):
+    min_stack = []
+    stack = []
+    min = None
+
+    def push(self,item):
+        if len(self.stack)==0:
+            self.min=item
+            self.stack.append(item)
+            self.min_stack.append(item)
+        else:
+            if item<=self.min:
+                self.min = item
+                self.stack.append(item)
+                self.min_stack.append(item)
+            else:
+                self.stack.append(item)
+
+    def pop(self):
+        if len(self.stack)!=0:
+            x = self.stack[-1]
+            #print(x)
+            self.stack.pop()
+            if x == self.min_stack[-1]:
+                self.min_stack.pop()
+                if len(self.stack)==0:
+                    self.min=None
+                else:
+                    self.min = self.min_stack[-1]
+        else:
+            print("Empty")
+
+    def getmin(self):
+        return self.min
+
+
