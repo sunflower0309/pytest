@@ -65,8 +65,65 @@ def triangles():
 k=triangles()
 n=0
 for t in triangles():
-    print(t)
+    # print(t)
 
     n = n + 1
     if n == 10:
         break
+
+def is_divi(n):
+    def di(x):
+        return x%n>0
+    return di
+
+def generatorx():
+    n=1
+    while True:
+        n=n+2
+        yield n
+
+def primes():
+    n=2
+    yield n
+    it=generatorx()
+    while True:
+        n=next(it)
+        yield n
+        it=filter(is_divi(n),it)
+
+pr=primes()
+for n in range(10):
+    #print(next(pr))
+    n+=1
+
+def bibao():
+    fs=[]
+    def f(n):
+        def g():
+            return n*n
+        return g
+    for n in range(4):
+
+        fs.append(f(n))
+    return fs
+
+def createCounter():
+    def gen():
+        n=1
+        yield n
+        while True:
+            n=n+1
+            yield n
+
+    x=gen()
+    def counter():
+        return next(x)
+
+    return counter
+counterA = createCounter()
+print(counterA(), counterA(), counterA(), counterA(), counterA())
+counterB = createCounter()
+if [counterB(), counterB(), counterB(), counterB()] == [1, 2, 3, 4]:
+    print('测试通过!')
+else:
+    print('测试失败!')
