@@ -56,3 +56,8 @@ def f1(a, b, c=0, *args, **kw):
 args = (1, 2, 3,4,5)
 kw = {'d': 99, 'x': '#'}
 f1(*args,**kw)
+
+x1='man'
+x2='woman'
+x3='man'
+print(hash(x1),hash(x2),hash(x3))
