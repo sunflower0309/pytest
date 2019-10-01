@@ -36,7 +36,7 @@ class SingleLinkList(object):
         """遍历整个链表"""
         cur = self.__head
         while cur != None:
-            print(cur.elem,end=" ")
+            print(cur.elem, end=" ")
             cur = cur.next
         print("")
 
@@ -63,17 +63,17 @@ class SingleLinkList(object):
         """指定位置添加元素
         pos 从0开始
         """
-        if pos < 0 :
+        if pos < 0:
             # 输入值小于0，默认为头插法
             return self.add(item)
-        elif pos > self.length()-1:
+        elif pos > self.length() - 1:
             # 输入值大于列表长度，默认为尾插法
             self.append1(item)
         else:
             node = Node(item)
             cur = self.__head
             count = 0
-            while count < (pos-1):
+            while count < (pos - 1):
                 count += 1
                 cur = cur.next
             # 当循环退出时，cur指向pos-1的位置
@@ -99,7 +99,6 @@ class SingleLinkList(object):
                 cur = cur.next
         return
 
-
     def search(self, item):
         """查找节点是否存在"""
         cur = self.__head
@@ -110,29 +109,29 @@ class SingleLinkList(object):
                 cur = cur.next
         return False
 
-    def searchindex(self,item):
-        cur=self.__head
+    def searchindex(self, item):
+        cur = self.__head
 
-        count=0
-        if cur==None:
+        count = 0
+        if cur == None:
             print("This chain table is empty")
         else:
 
-            while cur!=None:
-                if cur.elem==item:
+            while cur != None:
+                if cur.elem == item:
                     print(count)
                     break
                 else:
-                    count+=1
-        if count==self.length()-1:
+                    count += 1
+        if count == self.length() - 1:
             print("Can't find node")
 
     def last(self):
-        cur=self.__head
+        cur = self.__head
 
-        if cur!=None:
-            while cur.next!=None:
-                cur=cur.next
+        if cur != None:
+            while cur.next != None:
+                cur = cur.next
             print("inlast")
             print(cur.get_elem())
 
@@ -140,24 +139,73 @@ class SingleLinkList(object):
         else:
             print("Empty")
 
-    def insertnew(self,item,pos):
-        node=Node(item)
+    def insertnew(self, item, pos):
+        node = Node(item)
 
-        cur=self.__head
-        if cur==None:
-            self.__head=node
-        elif pos<0:
-            node.next=cur
-            self.__head=node
-        elif pos>self.length()-1:
-            cur=self.last()
-            cur.next=node
+        cur = self.__head
+        if cur == None:
+            self.__head = node
+        elif pos < 0:
+            node.next = cur
+            self.__head = node
+        elif pos > self.length() - 1:
+            cur = self.last()
+            cur.next = node
         else:
-            count=0
-            while count<pos:
+            count = 0
+            while count < pos:
+                cur = cur.next
+            node.next = cur.next
+            cur.next = node
+
+    def reverse(self):
+        list=[]
+        prev=self.__head
+        cur=prev.next
+        next=cur.next
+        prev.next=None
+        while next.next!=None:
+            cur.next=prev
+            prev=cur
+            cur=next
+            next=next.next
+        next.next=cur
+        cur.next=prev
+        self.__head=next
+        return self
+
+    def find_middle(self):
+        cur=self.__head
+        count=1
+        while cur.next:
+            cur=cur.next
+            count+=1
+        cur=self.__head
+        if count%2==1:
+            index=(count+1)/2
+            for i in range(1,int(index)):
                 cur=cur.next
-            node.next=cur.next
-            cur.next=node
+            print("middle node")
+            print(cur.elem)
+        else:
+            index=count/2
+            for i in range(1,int(index)):
+                cur=cur.next
+            print("middle node")
+            print(cur.elem,cur.next.elem)
+
+
+linkedlist=SingleLinkList(Node(1))
+for i in range(2,11):
+    linkedlist.append1(i)
+print("first linkedlist:")
+linkedlist.travel()
+print("reversed linkedlist:")
+linkedlist.reverse()
+linkedlist.travel()
+linkedlist.find_middle()
+
+
 
 class MinStack(object):
     min_stack = []

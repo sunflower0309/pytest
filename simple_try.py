@@ -21,4 +21,38 @@ def longestWord(words):
 words=["ts","e","x","pbhj","opto","xhigy","erikz","pbh","opt","erikzb","eri","erik","xlye","xhig","optoj","optoje","xly","pb","xhi","x","o"]
 # words.sort(key=lambda x:[-len(x),x])
 # print(words)
-print(longestWord(words))
+#print(longestWord(words))
+def foo(s):
+    n = int(s)
+    if n==0:
+        raise ValueError('invalid value: %s' % s)
+    return 10 / n
+
+def bar():
+    try:
+        foo('0')
+    except ValueError as e:
+        print('ValueError!')
+        raise
+
+from functools import reduce
+
+def str2num(s):
+    return int(s)
+
+def calc(exp):
+    ss = exp.split('+')
+    ns = map(str2num, ss)
+    return reduce(lambda acc, x: acc + x, ns)
+
+def main():
+    r = calc('100 + 200 + 345')
+    print('100 + 200 + 345 =', r)
+    r = calc('99 + 88 + 76')
+    print('99 + 88 + 76 =', r)
+
+def f1(a, b, c=0, *args, **kw):
+    print('a =', a, 'b =', b, 'c =', c, 'args =', args, 'kw =', kw)
+args = (1, 2, 3,4,5)
+kw = {'d': 99, 'x': '#'}
+f1(*args,**kw)
