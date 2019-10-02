@@ -25,7 +25,7 @@ class imple_set_binarytree(object):
         self.binarytree=tree()
 
     def add(self,input):
-        if self.binarytree.search(input):
+        if self.binarytree.search(input)==True:#找到了重复的是false
             self.binarytree.add_node(input)
         else:
             return False
@@ -82,9 +82,9 @@ for i in lines:
     str=n.split()
     for words in str:
         #set_li.add(words)
-        #set_tree.add(words)
-        #print(words)
-        set_hash.add(words)
-    print(set_hash.size())
+        set_tree.add(words)
+        print(words)
+        #set_hash.add(words)
+    print(set_tree.size())
 #print(set_li.size())#7106
 #print(set_tree.size())
