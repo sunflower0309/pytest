@@ -40,4 +40,4 @@ class tree(object):
         return True
 
     def length(self):
-        return self.treeQueue.length()
+        return self.treenodelist.length()

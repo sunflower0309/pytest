@@ -100,15 +100,15 @@ class SingleLinkList(object):
                 cur = cur.next
         return
 
-    def search(self, item):
-        count=0
+    def search(self, item):#找到了是true
+
         cur = self.__head
         while cur != None:
             if cur.elem == item:
                 return True
             else:
                 cur = cur.next
-                count+=1
+
         return False
 
     def searchindex(self, item):
