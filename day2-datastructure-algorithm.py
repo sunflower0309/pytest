@@ -176,23 +176,14 @@ class SingleLinkList(object):
 
     def find_middle(self):
         cur=self.__head
+        middle=self.__head
         count=1
         while cur.next:
             cur=cur.next
             count+=1
-        cur=self.__head
-        if count%2==1:
-            index=(count+1)/2
-            for i in range(1,int(index)):
-                cur=cur.next
-            print("middle node")
-            print(cur.elem)
-        else:
-            index=count/2
-            for i in range(1,int(index)):
-                cur=cur.next
-            print("middle node")
-            print(cur.elem,cur.next.elem)
+            if count%2==0:
+                middle=middle.next
+        return middle
 
 
 linkedlist=SingleLinkList(Node(1))

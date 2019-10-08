@@ -26,6 +26,27 @@ class tree(object):
                 self.treeQueue.append(node)
                 self.treeQueue.pop(0)
 
+
+    def add_node_exchange(self,item):
+        node = treenode(item)
+        if len(self.treeQueue) == 0:
+            self.treeQueue.append(node)
+            self.root = node
+        else:
+            cur = self.treeQueue[0]
+            if cur.lchild == None:
+                node.item=cur.item#交换节点的值
+                cur.item=item
+                cur.lchild = node
+                self.treeQueue.append(node)
+            else:
+                node.item = cur.item  # 交换节点的值
+                cur.item = item
+                cur.rchild = node
+                self.treeQueue.append(node)
+                self.treeQueue.pop(0)
+
+
     def front_travel(self,root1):
         #print("getin")
         if root1==None:

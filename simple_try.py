@@ -61,3 +61,19 @@ x1='man'
 x2='woman'
 x3='man'
 print(hash(x1),hash(x2),hash(x3))
+x=[2, 1, 2, 3, 4, 5, 3,3,3,3,4]
+def findmaxfreq(k):
+    dict={}
+    for i in k:
+        if str(i) in dict:
+            dict[str(i)]=dict[str(i)]+1
+        else:
+            dict[str(i)]=1
+    max=0
+    maxkey=''
+    for i in dict.keys():
+        if dict[i]>max:
+            max=dict[i]
+            maxkey=i
+    return maxkey
+print(findmaxfreq(x))
