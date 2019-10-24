@@ -66,20 +66,20 @@ def mergesort(k):#归并排序之归：无限分解初始序列，直到长度�
     return li
 
 
-def quicksort1(k):#将整个序列分成key的两侧，左侧始终比key小，右侧始终比key大，递归到左右大小为1
-    if len(k)>=2:
-        key = k[random.randint(0,len(k)-1)]
-        left = []
-        right = []
-        for i in range(1, len(k)):
-            if k[i] > key:
-                right.append(k[i])
-            else:
-                left.append(k[i])
-
-        return quicksort1(left) + [key] + quicksort1(right)
-    else:
-        return k
+# def quicksort1(k):#将整个序列分成key的两侧，左侧始终比key小，右侧始终比key大，递归到左右大小为1
+#     if len(k)>=2:
+#         key = k[random.randint(0,len(k)-1)]
+#         left = []
+#         right = []
+#         for i in range(1, len(k)):
+#             if k[i] > key:
+#                 right.append(k[i])
+#             else:
+#                 left.append(k[i])
+#
+#         return quicksort1(left) + [key] + quicksort1(right)
+#     else:
+#         return k
 
 def qsort(k,left,right):
     if left<right:
@@ -101,27 +101,27 @@ def quicksort(k,left,right):
     return left
 
 
-def quicksortfindmid(k,index):
-    if k==[]:
-        return
-    else:
-        key = k[0]
-        left = []
-        right = []
-        for i in range(1, len(k)):
-            if k[i] >= key:
-                right.append(k[i])
-            else:
-                left.append(k[i])
-        left.append(key)#因为是比较第几小，所以加到left里始终保证key是最大的，最不小的一个
-        if len(left)==index:
-            print(key)
-            return key
-        else:
-            if index > len(left):#如果寻找的序列比左边大，就要去右边重新排名再找
-                quicksortfindmid(right, index-len(left))
-            elif index < len(left):#如果寻找的序列比左边小，就继续找
-                quicksortfindmid(left, index)
+# def quicksortfindmid(k,index):
+#     if k==[]:
+#         return
+#     else:
+#         key = k[0]
+#         left = []
+#         right = []
+#         for i in range(1, len(k)):
+#             if k[i] >= key:
+#                 right.append(k[i])
+#             else:
+#                 left.append(k[i])
+#         left.append(key)#因为是比较第几小，所以加到left里始终保证key是最大的，最不小的一个
+#         if len(left)==index:
+#             print(key)
+#             return key
+#         else:
+#             if index > len(left):#如果寻找的序列比左边大，就要去右边重新排名再找
+#                 quicksortfindmid(right, index-len(left))
+#             elif index < len(left):#如果寻找的序列比左边小，就继续找
+#                 quicksortfindmid(left, index)
 
 
 def heapify(arr, n, i):
@@ -169,22 +169,33 @@ for i in lines:
         wordlist.append(words)
         #print(len(wordlist))
 
-# wordlist2=wordlist.copy()
-# wordlist3=wordlist.copy()
-# # li_insertation=insertationsort(wordlist)#1200.596325461563
-# # li_selection=selectionsort(wordlist)#1002.4897632598877
-# # li_merge=mergesort(wordlist)#3.445197105407715 ok
-# # li_heap=heapSort(wordlist)#1.3310761451721191
-# # li_quick=quicksort(wordlist)#3.0201728343963623
-# time1=time.time()
-# li_quick=qsort(wordlist2,0,len(wordlist2)-1)
-# time2=time.time()
-# li_merge=mergesort(wordlist3)#3.445197105407715
-# time3=time.time()
-# li_heap=heapSort(wordlist)
-# time4=time.time()
-# print(time2-time1)
-# print(time3-time2)
-# print(time4-time3)
-#
-# print(li_merge==li_quick==li_heap)
+wordlist2=wordlist.copy()
+wordlist3=wordlist.copy()
+# li_insertation=insertationsort(wordlist)#1200.596325461563
+# li_selection=selectionsort(wordlist)#1002.4897632598877
+# li_merge=mergesort(wordlist)#3.445197105407715 ok
+# li_heap=heapSort(wordlist)#1.3310761451721191
+# li_quick=quicksort(wordlist)#3.0201728343963623
+li_q=[]
+li_m=[]
+li_h=[]
+# for i in range(10):
+#     li_quick=[]
+#     time1 = time.time()
+#     li_quick = qsort(wordlist2, 0, len(wordlist2) - 1)
+#     time2 = time.time()
+#     li_q.append(time2-time1)
+for i in range(10):
+    time2 = time.time()
+    li_merge = mergesort(wordlist3)
+    time3 = time.time()
+    li_m.append(time3-time2)
+for i in range(10):
+    time3=time.time()
+    li_heap = heapSort(wordlist)
+    time4 = time.time()
+    li_h.append(time4-time3)
+
+print("merge_mean:",np.mean(li_m),"heap_mean:",np.mean(li_h))
+print("merge_std:",np.std(li_m),"heap_std:",np.std(li_h))
+#print(li_merge==li_quick==li_heap)

@@ -90,24 +90,37 @@ for i in lines:
 
     str=str+n.split()
 
-set_li=imple_set_linkedlist()
-set_tree=imple_set_binarytree()
-set_hash=HashTableSet()
-for words in str:
-    set_li.add(words)
-for words in str:
-    set_hash.add(words)
-for words in str:
-    set_tree.add(words)
-x=np.linspace(0,set_li.size(),set_li.size())#X轴数据
-y1=set_li.timelist
-y2=[i-y1[-1] for i in set_hash.timelist]
-y3=[i-y2[-1]-y1[-1] for i in set_tree.timelist]
-plt.plot(x,y1,label='linkedlist',color='black')
-plt.plot(x,y2,label='hashtable',color='blue')
-plt.plot(x,y3,label='binarytree',color='red')
-plt.legend()
-plt.show()
+li=[]
+tree=[]
+hashtable=[]
+
+
+for i in range(10):
+    set_li = imple_set_linkedlist()
+    for words in str:
+        set_li.add(words)
+    li.append(set_li.timelist[-1]-set_li.timelist[0])
+for i in range(10):
+    set_hash = HashTableSet()
+    for words in str:
+        set_hash.add(words)
+    hashtable.append(set_hash.timelist[-1]-set_hash.timelist[0])
+for i in range(10):
+    set_tree = imple_set_binarytree()
+    for words in str:
+        set_tree.add(words)
+    tree.append(set_tree.timelist[-1]-set_tree.timelist[0])
+print("li_mean:",np.mean(li),"hash_mean:",np.mean(hashtable),"tree_mean:",np.mean(tree))
+print("li_std:",np.std(li),"hash_std:",np.std(hashtable),"tree_std:",np.std(tree))
+# x=np.linspace(0,set_li.size(),set_li.size())#X轴数据
+# y1=set_li.timelist
+# y2=[i-y1[-1] for i in set_hash.timelist]
+# y3=[i-y2[-1]-y1[-1] for i in set_tree.timelist]
+# plt.plot(x,y1,label='linkedlist',color='black')
+# plt.plot(x,y2,label='hashtable',color='blue')
+# plt.plot(x,y3,label='binarytree',color='red')
+# plt.legend()
+# plt.show()
 
 
 
